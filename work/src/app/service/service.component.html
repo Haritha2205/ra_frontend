@@ -9,8 +9,8 @@
       <strong style="font-size: 18px; color:red">Attention!!</strong><br>
        <b style="font-size: 14px; color:black">Please _/\_ Fill atleast one of the charges.</b>         
     </div><br><br>
+    
 <div class="row">
-  
    <div class="col-sm-6">
     <mat-form-field appearance="fill" class="a">
     <mat-label class="b">Service Category</mat-label>  
@@ -22,7 +22,6 @@
     </mat-autocomplete>
   </mat-form-field>
  </div>
-
 
    <div class="col-sm-6">
     <mat-form-field appearance="fill" class="a">
@@ -118,90 +117,63 @@
             *ngIf="description.invalid && (description.dirty || description.touched)"[hidden]="description.valid">
     <div style="font-size: 14px;" *ngIf="description.errors.pattern">Symbols not allowed</div>
 </div>
-  </div>
+</div>
   
   <div>
     <mat-form-field class="a">
       <mat-label class="b">Name</mat-label>
-      <input matInput  
-      
-       autocomplete="off" name="name" required
-        formControlName="name">
-        
-    </mat-form-field>
-    <div style="font-size: 12px; color: red;" 
-            *ngIf="name.invalid && (name.dirty || name.touched)"[hidden]="name.valid">
-        
+      <input matInput autocomplete="off" name="name" required formControlName="name">
+     </mat-form-field>
+    <div style="font-size: 12px; color: red;" *ngIf="name.invalid && (name.dirty || name.touched)"[hidden]="name.valid">        
         <div style="font-size: 14px;" *ngIf="name.errors.pattern">Characters only</div>
-      </div>
-  </div>
+        </div>
+    </div>
                     
 <div class="row">
   <div class="col-sm-6">
     <mat-form-field class="a">
       <mat-label class="b"  value ="1">Day Charge</mat-label>
-      <input matInput 
-       autocomplete="off"   
-        formControlName="dayCharge" name="dayCharge">
-        
+      <input matInput autocomplete="off" formControlName="dayCharge" name="dayCharge">        
     </mat-form-field>
-    <div style="font-size: 12px; color: red;" 
-            *ngIf="dayCharge.invalid && (dayCharge.dirty || dayCharge.touched)"[hidden]="dayCharge.valid">
-        
+    <div style="font-size: 12px; color: red;" *ngIf="dayCharge.invalid && (dayCharge.dirty || dayCharge.touched)"[hidden]="dayCharge.valid">        
         <div style="font-size: 14px;" *ngIf="dayCharge.errors.pattern">Greater than 0</div>
-
-      </div>
+    </div>
   </div>
   
   <div  class="col-sm-6">
     <mat-form-field class="a">
       <mat-label class="b"  value ="1">Night Charge</mat-label>
-      <input matInput 
-      autocomplete="off" formControlName="nightCharge" name="nightCharge" >
-      
+      <input matInput autocomplete="off" formControlName="nightCharge" name="nightCharge">      
     </mat-form-field>
-    <div style="font-size: 12px; color: red;" 
-            *ngIf="nightCharge.invalid &&  (nightCharge.dirty || nightCharge.touched)"[hidden]="nightCharge.valid">
-        
+    <div style="font-size: 12px; color: red;" *ngIf="nightCharge.invalid &&  (nightCharge.dirty || nightCharge.touched)"[hidden]="nightCharge.valid">        
         <div style="font-size: 14px;" *ngIf="nightCharge.errors.pattern">Greater than 0</div>
-
       </div>
   </div>
   </div>
   
-<div >
+<div>
   <mat-form-field >
     <mat-label class="b">Tax</mat-label>
-    <input matInput required 
-    autocomplete="off" formControlName="tax" name="tax">
-    
+    <input matInput required autocomplete="off" formControlName="tax" name="tax">    
   </mat-form-field>
-  <div style="font-size: 12px; color: red;" 
-            *ngIf="tax.invalid && (tax.dirty || tax.touched)"[hidden]="tax.valid">
-        
+  <div style="font-size: 12px; color: red;" *ngIf="tax.invalid && (tax.dirty || tax.touched)"[hidden]="tax.valid">        
         <div style="font-size: 14px;" *ngIf="tax.errors.min">Inbetween [0.01-100]</div>
         <div style="font-size: 14px;" *ngIf="tax.errors.pattern">numbers only</div>
-        <div style="font-size: 14px;" *ngIf="tax.errors.max">Inbetween [0.01-100]</div>
-        
+        <div style="font-size: 14px;" *ngIf="tax.errors.max">Inbetween [0.01-100]</div>        
       </div>
-<div>
+   <div>
   
-<div>
- 
+<div> 
   <section>
     <mat-checkbox required  formControlName="displayToCustomer">Display to Customer</mat-checkbox>
   </section>
-  
-  
-  
-
-</div>
+ </div>
     <button mat-raised-button [disabled]="!service.valid" type="button" (click)=onSubmit(service.value) color="primary"  >Submit</button>
 </div><br><br>
 
 <div class="container">
 <div class="content">
-  <div >
+  <div>
     <table class="table table-bordered table-striped mb-0">
         <th style="font-size: 18px; color: black;  text-align: center;  background-color: rgb(250, 250, 36);">Name</th>
         <th style="font-size: 18px; color: black; text-align: center;   background-color: rgb(250, 250, 36);">Status</th>
@@ -211,7 +183,6 @@
          <th style="font-size: 18px; color: black; text-align: center;   background-color: rgb(250, 250, 36);">Day Charge</th>
         <th style="font-size: 18px; color: black; text-align: center;   background-color: rgb(250, 250, 36);">Night Charge</th>
         <th style="font-size: 18px; color: black; text-align: center;   background-color: rgb(250, 250, 36);">Delete</th>
-
       <tr *ngFor ="let service of lists  | paginate : {
         id : 'listing_pagination',
       itemsPerPage:5, 
@@ -229,10 +200,9 @@
             <button style="margin-left: 33px;" mat-mini-fab color="secondary" type="button" (click)="onDelete(service.id,service.isActive)" aria-label="Example icon button with a delete icon">
               <mat-icon *ngIf="service.isActive" style="color:red;" >delete</mat-icon>
               <mat-icon *ngIf="!service.isActive" style="color:blue;">loop</mat-icon>
-                        </button></td>  
-                           </tr>
+             </button></td>  
+            </tr>
   </table></div>
   <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
-
 </div>
 </div></div></form>
