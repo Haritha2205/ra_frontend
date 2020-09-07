@@ -5,14 +5,12 @@ import { JsonPipe } from '@angular/common';
 import { timeout } from 'rxjs/operators';
 // import { Observable } from 'rxjs';
 
-
 const header = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
   'Access-Control-Allow-Headers': 'Content-Type',
   'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGFyaXRoYSBwIiwiaWQiOjEsImVtYWlsIjoiaGFyaXRoYXBuYWlyMjIwNUBnbWFpbC5jb20iLCJtb2JpbGVObyI6Ijk0ODk0NTIzNDgiLCJSb2xlTmFtZSI6IkFkbWluIiwidmVuZG9ySWQiOm51bGwsImlhdCI6MTU5ODUyMjk0NCwiZXhwIjoxNjAxMTE0OTQ0fQ.-yljrOcfC9tqCXxpCj-lpTZM9fD_36-c7G3dCA_LYB0'
 }
-
   const request = {                                                                                                                                                                                 
   headers: new HttpHeaders(header), 
 };
@@ -24,7 +22,6 @@ export class client{
   templateUrl: './client-master.component.html',
   styleUrls: ['./client-master.component.css']
 })
-
 
 export class ClientMasterComponent  {
   [x: string]: any;
@@ -43,9 +40,7 @@ export class ClientMasterComponent  {
     this.data = new Array<any>()
   }
 service = [];
-
-
-
+  
  client=new FormGroup({
   name:new FormControl('',[Validators.required,Validators.pattern("[a-zA-Z_\\s]+$"),Validators.minLength(3),Validators.maxLength(30)])
  })
@@ -63,8 +58,7 @@ get(){
 }
  onDelete(id:number,isActive:boolean){
    if(isActive){
-
-  this.http.patch('http://localhost:3000/api/client-masters/' +id , {
+    this.http.patch('http://localhost:3000/api/client-masters/' +id , {
     "isActive": false,    
   },request)
   
@@ -75,11 +69,10 @@ get(){
     this.http.patch('http://localhost:3000/api/client-masters/' +id , {
     "isActive": true,    
   },request)
-  
+    
   .subscribe((da)=>{
     this.get();
   })
-
   }
 }
 //update
@@ -89,18 +82,12 @@ onUpdate(a:any,b:any){
   this.client.controls['name'].setValue(b);
   this.y=b;
  }
-//  delete(id:number){
-   
-  
-// }
 
 //patch
 
  patch(){
-
   this.z=(this.client.controls['name']).value;
-  this.http.patch('http://localhost:3000/api/client-masters/' +this.x, {
-   
+  this.http.patch('http://localhost:3000/api/client-masters/' + this.x, {   
     "name":this.z
  },request)
  
@@ -119,9 +106,8 @@ onUpdate(a:any,b:any){
 //end
 public onSubmit(e)
   {
-    if(this.title=="submit"){
-
-    
+    if(this.title=="submit") 
+    {
     this.client.reset(); 
     this.http.post ('http://localhost:3000/api/client-masters', e,request)
     .subscribe((result)=>{
@@ -138,14 +124,7 @@ public onSubmit(e)
   } 
   else{
     this.patch();
-    
   }
 } 
  get name(){return this.client.get("name")}
-
-//  getData():Observable<any>{
-//   return this.http.get('http://localhost:3000/api/client-masters')
-
-  
-//  }
 }
