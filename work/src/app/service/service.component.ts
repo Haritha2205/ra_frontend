@@ -81,7 +81,6 @@ export class ServiceComponent implements OnInit{
   protected banks: Bank[]=[]
   protected banks1: Bank1[]=[]
   protected banks2: Bank2[]=[]
-
  
   public bankFilterCtrl: FormControl = new FormControl();
   public bankFilterCtrls: FormControl = new FormControl();
