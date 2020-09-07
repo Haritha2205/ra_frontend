@@ -1,8 +1,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet"> 
 <form class="container" [formGroup]="client">
   <p>
-    <mat-toolbar class="c" >
-      
+    <mat-toolbar class="c">      
       <span><img src='https://www.readyassist.in/image/logo/readyassist.png'></span>
     </mat-toolbar>   
   </p>
@@ -10,8 +9,7 @@
     <div class="col-sm-6">              ​
       <div *ngIf="isExist"  role="alert">
         <strong style="font-size: 18px; color:red">Sorry :(</strong> name already Exist...           
-      </div>
-      
+      </div>      
 
       <div class="jumpotron">
         <mat-form-field class="a">
@@ -22,15 +20,13 @@
             *ngIf="name.invalid && (name.dirty || name.touched)"[hidden]="name.valid">
         <div *ngIf="name.errors.pattern">Characters only...</div>
         <div *ngIf="name.errors.minlength">Min 3 characters...</div>
-
       </div>
       </div>   
       
       <div class="text-center">
         <button  mat-raised-button [disabled]="!client.valid" type="button" (click)="onSubmit(client.value)" color="primary">{{title}}</button>
       </div>  
-    </div>
-    
+    </div>    
 
     <div class="col-sm-6">
       <div class="container">
@@ -43,17 +39,14 @@
             (page)="page"
             (pageChange)="get()">
 </mat-paginator> -->
-
             </div>
-            <table class="table table-bordered table-striped mb-0">
-             
+            
+            <table class="table table-bordered table-striped mb-0">             
               <th style="font-size: 18px; text-align: center; color: black; background-color: rgb(250, 250, 36);">Name</th>
               <th style="font-size: 18px; text-align: center; color: black; background-color: rgb(250, 250, 36);">Status</th>
               <th style="font-size: 18px; text-align: center; color: black; background-color: rgb(250, 250, 36);">Activation</th> 
               <th style="font-size: 18px; text-align: center; color: black;background-color: rgb(250, 250, 36);">Edit</th>         
-              <tr>
-                
-              </tr>
+              <tr> </tr>
               <tr *ngFor ="let client of lists | paginate : {
                 id : 'listing_pagination',
               itemsPerPage:5, 
@@ -72,8 +65,7 @@
                   <button style="margin-left: 20px;" mat-mini-fab color="secondary" type="button"  (click)="onUpdate(client.id,client.name)" aria-label="Example icon button with a delete icon">
                     <mat-icon style="color:blue;">create</mat-icon>
                   </button></td>                  
-              </tr>
-              
+              </tr>              
           </table></div>
         <div>
           <pagination-controls   id="listing_pagination"
@@ -86,4 +78,3 @@
   </div>
 </div>
 </form> 
-
