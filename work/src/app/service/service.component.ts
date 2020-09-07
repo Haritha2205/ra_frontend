@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import {  FormControl,FormGroup,Validators } from '@angular/forms';
 import { HttpClientModule, HttpClient,HttpHeaders } from '@angular/common/http';
-
 import { ReplaySubject, Subject } from 'rxjs';
 import { MatSelect } from '@angular/material/select';
 import { take, takeUntil } from 'rxjs/operators';
@@ -13,24 +12,20 @@ interface service {
 interface filter {
   id: number;
   name: string;
- }
- 
+ } 
  export interface Bank {
   id: number;
   name: string;
 }
-
 export interface Bank1 {
   id: number;
   name: string;
 }
-
 export interface Bank2 {
   id: number;
   make: string;
   model:string;
 }
-
 const header = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
@@ -55,8 +50,7 @@ export class ServiceComponent implements OnInit{
   isExist:boolean;
   durationInSeconds = 5;
   totalRecords:any;
-  page:any;
-  
+  page:any;  
   client = [];
   location = [];
   vehicle = [];  
@@ -98,7 +92,6 @@ export class ServiceComponent implements OnInit{
   public filteredBankz: ReplaySubject<Bank2[]> = new ReplaySubject<Bank2[]>(1);
 
   ngOnInit(): void {
-
     this.getClient();
     this.getVehicle();
     this.getLocation();
@@ -131,7 +124,7 @@ export class ServiceComponent implements OnInit{
       });
 }
 
-//Nagoo
+//Start
 protected _onDestroy = new Subject<void>();
 ngOnDestroy() {
   this._onDestroy.next();
@@ -141,8 +134,7 @@ ngOnDestroy() {
 protected setInitialValue() {
   this.filteredBanks
     .pipe(take(1), takeUntil(this._onDestroy))
-    .subscribe(() => {
-     
+    .subscribe(() => {     
       this.singleSelect.compareWith = (a: Bank, b: Bank) => a && b && a.id === b.id;
     });
 }
@@ -164,7 +156,7 @@ protected filterBanks() {
 }
 //End
 
-//Nagoo
+//Start
 
 protected _onDestroys = new Subject<void>();
 ngOnDestroys() {
@@ -199,8 +191,7 @@ protected filterBank() {
 }
 //End
 
-
-//Nagoo
+//Start
 protected _onDestroyz = new Subject<void>();
 ngOnDestroyz() {
   this._onDestroyz.next();
@@ -227,8 +218,7 @@ protected filterBankz() {
     search = search.toLowerCase();
   }
   this.filteredBankz.next(
-    this.banks2.filter((bank2 => bank2.make.toLowerCase().indexOf(search) > -1))
-    
+    this.banks2.filter((bank2 => bank2.make.toLowerCase().indexOf(search) > -1))    
   );
 }
 //End
@@ -267,8 +257,7 @@ onChange1(searchValue: string): void {
         updatedAt:string;
         isActive :string;
         name:string;
-    }
-    
+    }    
     interface MyObjLayout1 {
       id: string;
       createdAt:string;
@@ -286,18 +275,16 @@ onChange1(searchValue: string): void {
     name:string;
 }
 var obj2: MyObjLayout2 = e.bankCtrlz;
-var idvehicle=obj2.id;
-   
+var idvehicle=obj2.id;  
 
-  var obj1: MyObjLayout1 = e.bankCtrls;
-  var idlocation=obj1.id;
-  
+var obj1: MyObjLayout1 = e.bankCtrls;
+var idlocation=obj1.id; 
 
-    var obj: MyObjLayout = e.bankCtrl;
-    var idclient=obj.id;
+var obj: MyObjLayout = e.bankCtrl;
+var idclient=obj.id;
     
-    var nightchargevalue=0;
-    let test=e.nightCharge;
+var nightchargevalue=0;
+let test=e.nightCharge;
      if(test==undefined)
      {
        nightchargevalue=0;
@@ -306,8 +293,8 @@ var idvehicle=obj2.id;
     {
       nightchargevalue=Number(e.nightCharge);
     }
-    var daychargevalue=0;
-    let test1=e.dayCharge;
+var daychargevalue=0;
+let test1=e.dayCharge;
      if(test1==undefined)
      {
        daychargevalue=0;
@@ -317,8 +304,7 @@ var idvehicle=obj2.id;
       daychargevalue=Number(e.dayCharge);
     }
     if(daychargevalue==0 && nightchargevalue==0){
-     this.allow=true;
-   
+     this.allow=true;   
      return false;
     }
       var array:any=JSON.stringify({"category":String(e.category),
@@ -338,11 +324,11 @@ var idvehicle=obj2.id;
       console.log(array);
       this.allow=false;
       this.http.post ('http://localhost:3000/api/service-masters', array,request)
-      .subscribe((result)=>{
+      .subscribe((result) => {
         console.log(result); 
         this.get(); 
     },
-    error =>{
+    error => {
       if(error.status==422)
       this.isExist=true;
     })
@@ -350,13 +336,13 @@ var idvehicle=obj2.id;
  
   getClient(){
     return this.http.get<any>('http://localhost:3000/api/client-masters',request)
-    .subscribe((res)=>{
+    .subscribe((res) => {
       this.banks=res;
     })
   }
     getVehicle(){
       return this.http.get<any>('http://localhost:3000/api/vehicle-masters',request)
-      .subscribe((res)=>{
+      .subscribe((res) => {
       this.banks2=res;
       })
     }
@@ -365,54 +351,29 @@ var idvehicle=obj2.id;
       .subscribe((res)=>{
       this.banks1=res;      
       })
-    }
-    
+    }    
     get(){
       this.http.get('http://localhost:3000/api/service-masters',request)
-
-      .subscribe((res : any[])=>{
+      .subscribe((res : any[]) => {
         this.lists=res;      
-            this.totalRecords = this.lists.length;
-  
+        this.totalRecords = this.lists.length;  
       })
       this.service.reset();
-
     }
-    //update
-    // onUpdate(a:any,c:any,sc:any,d:any,n:any,dc:any,nc:any,tax:any,cust:any){
-    //   this.x=a;
-    //   this.title="update";
-    //   this.service.controls['category'].setValue(c);
-    //   this.service.controls['serviceCode'].setValue(sc);
-    //   // this.service.controls['clientId'].setValue(cd);
-    //   // this.service.controls['locationId'].setValue(ld);
-    //   // this.service.controls['vehicleId'].setValue(vd);
-    //   // this.service.controls['leadTime'].setValue(lt);
-    //   // this.service.controls['inttervalTime'].setValue(tt);
-    //   this.service.controls['description'].setValue(d);      
-    //   this.service.controls['name'].setValue(n);
-    //   this.service.controls['dayCharge'].setValue(dc);
-    //   this.service.controls['nightCharge'].setValue(nc);
-    //   this.service.controls['tax'].setValue(tax);
-    //   this.service.controls['displayToCustomer'].setValue(cust);
-      
-      
-    //  }
+  
     onDelete(id:number,isActive:boolean){ 
       if(isActive){    
       this.http.patch('http://localhost:3000/api/service-masters/' +id ,{
         "isActive":false
       },request) 
-      .subscribe((a)=>
-      {      
+      .subscribe((a) => {      
         this.service.reset();
         this.get();
       })}else{
         this.http.patch('http://localhost:3000/api/service-masters/' +id ,{
         "isActive":true
       },request) 
-      .subscribe((a)=>
-      {      
+      .subscribe((a) => {      
         this.service.reset();
         this.get();
       })
